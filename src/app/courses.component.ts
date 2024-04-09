@@ -1,10 +1,16 @@
 import {Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoursesService } from './courses.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'courses',
     template: `
+    <input [(ngModel)]="aProperty" (keyup.enter)="onKeyUpTwoWayBinding()" />
+    <input #email (keyup.enter)="onKeyUpWithVariable(email.value)"/>
+    <input (keyup.enter)="onKeyUp2()"/>
+    <input (keyup)="onKeyUp($event)" />
+
     <div (click)="onDivClicked()">
         <button (click)="onClick($event)">EventButton</button>
     </div>
@@ -13,9 +19,11 @@ import { CoursesService } from './courses.service';
     <button class="btn btn-primary" [class.active]="isActive">BootStrapExample</button>
 
         <table>
+            <thead>
             <tr>
                 <td [colSpan]="colSpan" ></td>
             </tr>
+            </thead>
         </table>
         
         <h2>{{ "Title: " + getTitle() }}</h2>
@@ -31,9 +39,32 @@ import { CoursesService } from './courses.service';
         <img [src]="imageUrl" alt="Woman taking a picture" />
         `,
     standalone: true,
-    imports: [CommonModule]
+    imports: [
+        CommonModule,
+        FormsModule
+    ]
 })
 export class CoursesComponent{
+    aProperty: string = "me@example.com";
+
+    onKeyUpTwoWayBinding(){
+        console.log(this.aProperty);
+    }
+    onKeyUpWithVariable(email: any){
+        console.log(email);
+    }
+    onKeyUp2(){
+        //Einfachere Methode in Angular
+        console.log("Enter was pressed");
+    }
+    onKeyUp($event: any){
+        //13 steht für enter
+        if($event.keyCode === 13){
+            console.log("Enter was pressed");
+            console.log($event.target.value);
+        } 
+    }
+
     onDivClicked(){
         console.log("Div was clicked");
         window.alert("Div was clicked");
