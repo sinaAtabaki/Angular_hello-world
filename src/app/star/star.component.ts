@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule} from '@angular/common';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-star',
@@ -9,9 +9,17 @@ import { Component } from '@angular/core';
   styleUrl: './star.component.css'
 })
 export class StarComponent {
-        isClicked = false;
+
+        
+        //Output Property, Raising a custom Event
+        @Output() change = new EventEmitter();
+  
+        //Input Properties
+        //@Input(is-clicked) isClicked = false; Input Properties can be aliased as well
+        @Input() isClicked = false;
 
         onClick(){
           this.isClicked = !this.isClicked;
+          this.change.emit();
         }
 }

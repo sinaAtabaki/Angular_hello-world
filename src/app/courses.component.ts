@@ -8,8 +8,11 @@ import { StarComponent } from './star/star.component';
 @Component({
     selector: 'courses',
     template: `
+    <!-- Title Casing Challenge -->
+    <input type="text" [(ngModel)]="titleCasing"/> <br/>
+    <span>{{ titleCasing | titlecase }}</span>
     <!-- Star Challenge -->
-    <app-star/>
+    <app-star />
    <!-- Custom Pipe with argument -->
     {{ text | summary:10 }} <br/>
     <!-- Pipes sind in der Doku zu finden https://angular.io/api/common/DatePipe-->
@@ -61,6 +64,9 @@ import { StarComponent } from './star/star.component';
     ]
 })
 export class CoursesComponent{
+    //Title Casing Challenge
+    titleCasing: string = '';
+
     //custom Pipes
     text = 'Lorem Ipsum bla bla bla';
     //Pipes
