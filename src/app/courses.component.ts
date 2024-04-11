@@ -2,20 +2,34 @@ import {Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoursesService } from './courses.service';
 import { FormsModule } from '@angular/forms';
+import { SummaryPipe } from './summary.pipe';
+import { StarComponent } from './star/star.component';
 
 @Component({
     selector: 'courses',
     template: `
-    <input [(ngModel)]="aProperty" (keyup.enter)="onKeyUpTwoWayBinding()" />
-    <input #email (keyup.enter)="onKeyUpWithVariable(email.value)"/>
-    <input (keyup.enter)="onKeyUp2()"/>
-    <input (keyup)="onKeyUp($event)" />
+    <!-- Star Challenge -->
+    <app-star/>
+   <!-- Custom Pipe with argument -->
+    {{ text | summary:10 }} <br/>
+    <!-- Pipes sind in der Doku zu finden https://angular.io/api/common/DatePipe-->
+    {{course.title | uppercase | lowercase}} <br/>
+    {{course.students | number}} <br/>
+    {{course.rating | number:'1.2-3'}} <br/>
+    {{course.price | currency:'EUR'}} <br/>
+    {{course.releaseDate | date:'short'}} <br/><br/>
+
+    <!-- Two Way Binding: -->
+    <input [(ngModel)]="aProperty" (keyup.enter)="onKeyUpTwoWayBinding()" /> <br/> 
+    <input #email (keyup.enter)="onKeyUpWithVariable(email.value)"/> <br/>
+    <input (keyup.enter)="onKeyUp2()"/> <br/>
+    <input (keyup)="onKeyUp($event)" /> <br/><br/>
 
     <div (click)="onDivClicked()">
         <button (click)="onClick($event)">EventButton</button>
     </div>
 
-    <button [style.backgroundColor]="isActive ? 'blue' : 'white'">StyleExample</button>
+    <button [style.backgroundColor]="isActive ? 'blue' : 'white'">StyleExample</button> <br/>
     <button class="btn btn-primary" [class.active]="isActive">BootStrapExample</button>
 
         <table>
@@ -41,10 +55,24 @@ import { FormsModule } from '@angular/forms';
     standalone: true,
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        SummaryPipe,
+        StarComponent
     ]
 })
 export class CoursesComponent{
+    //custom Pipes
+    text = 'Lorem Ipsum bla bla bla';
+    //Pipes
+    course = {
+        title: "The Complete Angular Course",
+        rating: 4.9745,
+        students: 30123,
+        price: 190.95,
+        releaseDate: new Date(2016, 3, 1)
+    }
+
+    //Two Way Binding:
     aProperty: string = "me@example.com";
 
     onKeyUpTwoWayBinding(){

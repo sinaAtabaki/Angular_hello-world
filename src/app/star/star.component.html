@@ -1,0 +1,26 @@
+<div>    
+    <!-- Template, das angezeigt wird, wenn die Bedingung wahr ist -->
+    <!-- <div *ngIf="isClicked; else elseBlock">
+        <span>Zu den Favoriten hinzufügen </span>
+        <i class="bi bi-star-fill" (click)="onClick()">
+        </i>
+    </div> -->
+
+    <!-- Template für das 'else'-Szenario -->
+    <!-- <ng-template #elseBlock>
+        <div>
+            <span>Zu den Favoriten hinzufügen </span>
+            <i class="bi bi-star" (click)="onClick()">
+            </i>
+        </div>
+    </ng-template> -->
+
+    <i
+     class="bi"
+     [class.bi-star]="!isClicked"
+     [class.bi-star-fill]="isClicked"
+     (click)="onClick()"
+    >
+    </i>
+
+</div>
