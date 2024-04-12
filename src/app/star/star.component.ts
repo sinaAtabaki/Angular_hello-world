@@ -10,7 +10,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class StarComponent {
 
-        
+
         //Output Property, Raising a custom Event
         @Output() change = new EventEmitter();
   
@@ -20,6 +20,10 @@ export class StarComponent {
 
         onClick(){
           this.isClicked = !this.isClicked;
-          this.change.emit();
+          this.change.emit({ newValue: this.isClicked });
         }
+}
+
+export interface StarChangedEventArgs {
+  newValue: boolean
 }

@@ -11,8 +11,6 @@ import { StarComponent } from './star/star.component';
     <!-- Title Casing Challenge -->
     <input type="text" [(ngModel)]="titleCasing"/> <br/>
     <span>{{ titleCasing | titlecase }}</span>
-    <!-- Star Challenge -->
-    <app-star />
    <!-- Custom Pipe with argument -->
     {{ text | summary:10 }} <br/>
     <!-- Pipes sind in der Doku zu finden https://angular.io/api/common/DatePipe-->
