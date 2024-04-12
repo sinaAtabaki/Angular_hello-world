@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CoursesService } from './courses.service';
 import { FormsModule } from '@angular/forms';
 import { SummaryPipe } from './summary.pipe';
-import { StarComponent } from './star/star.component';
+import { FavoriteComponent } from './favorite/favorite.component';
 
 @Component({
     selector: 'courses',
@@ -58,7 +58,7 @@ import { StarComponent } from './star/star.component';
         CommonModule,
         FormsModule,
         SummaryPipe,
-        StarComponent
+        FavoriteComponent
     ]
 })
 export class CoursesComponent{

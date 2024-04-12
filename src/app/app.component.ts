@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CoursesComponent } from './courses.component';
 import { VorlageComponent } from './vorlage.component';
-import { StarChangedEventArgs, StarComponent } from './star/star.component';
+import { FavoriteChangedEventArgs, FavoriteComponent } from './favorite/favorite.component';
+import { PanelComponent } from './panel/panel.component';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import { StarChangedEventArgs, StarComponent } from './star/star.component';
     RouterOutlet,
     CoursesComponent,
     VorlageComponent,
-    StarComponent
+    FavoriteComponent,
+    PanelComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -23,7 +25,7 @@ export class AppComponent {
   }
   title = 'Angular';
 
-  onStarChange(eventArgs: StarChangedEventArgs){
+  onFavoriteChange(eventArgs: FavoriteChangedEventArgs){
     console.log("Favorite was changed", eventArgs.newValue);
   }
 }
