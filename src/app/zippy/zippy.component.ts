@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef} from '@angular/core';
+import { Component, ElementRef, Input} from '@angular/core';
 
 @Component({
   selector: 'app-zippy',
@@ -10,7 +10,7 @@ import { Component, ElementRef} from '@angular/core';
 })
 export class ZippyComponent {
   isClicked = false;
-  title: string = this.el.nativeElement.attributes.title.nodeValue;
+  @Input('title') title: string = "";
 
   constructor(private el: ElementRef) 
   {}
