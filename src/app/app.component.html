@@ -1,5 +1,30 @@
 <h1>Angular</h1>
 
+<!-- Zippy Challenge -->
+<app-zippy title="Shopping Details">
+    Shipping Details Content
+</app-zippy>
+<app-zippy title="Billing Details">
+    Billing Details Content
+</app-zippy>
+
+<!-- Hier wird die Custom Directive appInputFormat aktiviert für den input -->
+<!-- Entweder so: -->
+<input type="text" appInputFormat [format]="'uppercase'"> <br/>
+<!-- Oder so: -->
+<input type="text" [appInputFormat]="'uppercase'"> <br/>
+
+<!-- Safe traversal Operator task.assignee?.name -->
+<span>{{ task.assignee.name }}</span> <br/>
+
+<button
+     [ngStyle]="{
+        'backgroundColor': canSave ? 'blue': 'gray',
+        'color': canSave ? 'white': 'black',
+        'fontWeight': canSave ? 'bold': 'normal'
+     }"
+>Save</button>
+
 <bootstrap-panel>
     <div class="title">Title</div>
     <div class="body">

@@ -1,0 +1,23 @@
+<div class="zippy"
+(click)="toggle()">
+<div 
+[ngStyle]="{
+    'backgroundColor': isClicked ? 'gray': 'white',
+    'color': isClicked ? 'white': 'black',
+    'fontWeight': isClicked ? 'bold': 'normal',
+}"
+class="zippy-heading">
+{{ title }}
+<i class="bi"
+    [ngClass]="{
+        'bi-chevron-down': isClicked,
+        'bi-chevron-up': !isClicked
+    }"
+    ></i>
+</div>
+
+<div class = "zippy-body" *ngIf="isClicked">
+    <ng-content></ng-content>
+</div>
+</div>
+<br/>

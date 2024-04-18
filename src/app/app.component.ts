@@ -4,21 +4,38 @@ import { CoursesComponent } from './courses.component';
 import { VorlageComponent } from './vorlage.component';
 import { FavoriteChangedEventArgs, FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
+import { CommonModule } from '@angular/common';
+import { InputFormatDirective } from './input-format.directive';
+import { ZippyComponent } from "./zippy/zippy.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    CoursesComponent,
-    VorlageComponent,
-    FavoriteComponent,
-    PanelComponent
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    imports: [
+        CommonModule,
+        RouterOutlet,
+        CoursesComponent,
+        VorlageComponent,
+        FavoriteComponent,
+        PanelComponent,
+        InputFormatDirective,
+        ZippyComponent
+    ]
 })
 export class AppComponent {
+  //Safe Traversal Operator
+  task = {
+    title: 'Review applications',
+    assignee: {
+      name: 'John Smith'
+    }
+  }
+
+  //For NgStyle
+  canSave = true;
+
   post = {
     title: "Title",
     isFavorite: true
