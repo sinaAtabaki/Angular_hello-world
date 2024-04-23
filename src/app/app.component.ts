@@ -7,6 +7,7 @@ import { PanelComponent } from './panel/panel.component';
 import { CommonModule } from '@angular/common';
 import { InputFormatDirective } from './input-format.directive';
 import { ZippyComponent } from "./zippy/zippy.component";
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @Component({
     selector: 'app-root',
@@ -21,7 +22,8 @@ import { ZippyComponent } from "./zippy/zippy.component";
         FavoriteComponent,
         PanelComponent,
         InputFormatDirective,
-        ZippyComponent
+        ZippyComponent,
+        ContactFormComponent
     ]
 })
 export class AppComponent {
