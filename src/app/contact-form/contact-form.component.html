@@ -1,7 +1,41 @@
-<form 
-#f="ngForm"
-(ngSubmit)="submit(f)">
 <!-- An jedes Form-Element wird Automatisch die ngForm Directive angeheftet -->
+<form #f="ngForm" (ngSubmit)="submit(f)">
+  <!-- ngModelGroup kann für eine weitere Gruppierung mehrerer form-group Elemente genutzt werden -->
+  <div ngModelGroup="contact" #contact="ngModelGroup">
+    <div *ngIf="!contact.valid">weitere Validierungsmeldungen hier möglich</div>
+    <div class="form-group">
+      <label for="firstName">First name</label>
+      <input
+        required
+        minlength="3"
+        maxlength="10"
+        pattern="banana"
+        ngModel
+        name="firstName"
+        #firstName="ngModel"
+        (change)="log(firstName)"
+        id="firstName"
+        type="text"
+        class="form-control"
+      />
+
+      <div
+        class="alert alert-danger"
+        *ngIf="firstName.touched && !firstName.valid"
+      >
+        <div *ngIf="firstName.errors?.['required']">
+          First name is required.
+        </div>
+        <div *ngIf="firstName.errors?.['minlength']">
+          First name should be a minimum of
+          {{ firstName.errors?.['minlength'].requiredLength }} characters
+        </div>
+        <div *ngIf="firstName.errors?.['pattern']">
+          First name does not match the pattern
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- form-control ist eine Angular Klasse , damit werden Eigenschaften an Input Felder geheftet, diese sind:
     value
@@ -13,42 +47,12 @@
     errors
     form-group besitzt die gleichen Eigenschaften wie form-control
     -->
-  <div class="form-group">
-    <label for="firstName">First name</label>
-    <input
-      required
-      minlength="3"
-      maxlength="10"
-      pattern="banana"
-      ngModel
-      name="firstName"
-      #firstName="ngModel"
-      (change)="log(firstName)"
-      id="firstName"
-      type="text"
-      class="form-control"
-    />
-
-    <div
-      class="alert alert-danger"
-      *ngIf="firstName.touched && !firstName.valid">
-      <div *ngIf="firstName.errors?.['required']">
-        First name is required.
-      </div>
-      <div *ngIf="firstName.errors?.['minlength']">
-        First name should be a minimum of {{ firstName.errors?.['minlength'].requiredLength }} characters
-      </div>
-      <div *ngIf="firstName.errors?.['pattern']">
-        First name does not match the pattern
-      </div>
-    </div>
-  </div>
 
   <!-- div.form-group>label[for='comment']+textarea[id='comment'].form-control -->
   <div class="form-group">
     <label for="comment">Comment</label>
     <textarea
-      ngmodel
+      ngModel="comment"
       name="comment"
       id="comment"
       cols="30"
@@ -56,7 +60,26 @@
       class="form-control"
     ></textarea>
   </div>
-
+  <!-- div.checkbox>label>input[type='checkbox'] -->
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ngModel name="isSubscribed" />
+      Subscribe to mailing list
+    </label>
+  </div>
+  <!-- div.form-group>label[for='contactMethod']+select[id='contactMethod'].form-control -->
+  <div class="form-group">
+    <label for="contactMethod">Contact Method</label>
+    <select ngModel name="contactMethod" id="contactMethod" class="form-control">
+      <option value=""></option>
+      <!-- Mit ngValue kann ein Objekt an das Value des Option gebindet werden,
+      normalerweise kann man nur ein String binden -->
+      <option *ngFor="let method of contactMethods" [ngValue]="method">{{ method.name }}</option>
+    </select>
+  </div>
+  <p>
+    {{ f.value | json }}
+  </p>
   <!-- button.btn.btn-primary (auch zen code genannt) -->
-  <button class="btn btn-primary">Submit</button>
+  <button [disabled]="!f.valid" class="btn btn-primary">Submit</button>
 </form>
